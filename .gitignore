@@ -8,3 +8,8 @@
 /XGNSS-Test/x64/Release
 /x64/Release
 /x64/Debug
+/Publish/*.exe
+/Publish/XGNSS-Test/*.exe
+/Publish/XGNSS-Test/*.txt
+/Working/*.txt
+/Publish/*.psd
