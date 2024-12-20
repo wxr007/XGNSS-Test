@@ -1,0 +1,375 @@
+/*===================================docking窗口渲染=======================================*/
+/*
+ * Default style sheet on Windows Platforms with focus highlighting flag enabled
+ */
+
+
+/*****************************************************************************
+ * CDockContainerWidget
+ *****************************************************************************/
+ads--CDockContainerWidget {
+    background: palette(window);
+}
+
+/*****************************************************************************
+* CDockSplitter
+*****************************************************************************/
+ads--CDockContainerWidget > QSplitter {
+    padding: 1 0 1 0;
+}
+
+/*窗口之间的分割线*/
+ads--CDockSplitter::handle {
+    background-color: palette(window);
+    /* uncomment the following line if you would like to change the size of
+       the splitter handles */
+    /* height: 1px; */
+}
+
+/*****************************************************************************
+ * CDockAreaWidget
+ *****************************************************************************/
+/*DockArea的颜色表现为标题栏的背景色*/
+ads--CDockAreaWidget {
+    background: white;/*palette(light);*/
+}
+
+/**DockArea的标题栏*/
+ads--CDockAreaTitleBar {
+    background: transparent;
+    border-bottom: 2px solid palette(light); /**/ /*标题栏的下划线*/
+    padding-bottom: 0px;
+}
+/*选中后标题栏下的一条下划线*/
+ads--CDockAreaWidget[focused="true"] ads--CDockAreaTitleBar {
+    border-bottom: 2px solid rgb(64, 158, 255); /*蓝色 normal*/ /*palette(highlight);*/
+}
+/*Dock标题栏的按钮*/
+ads--CTitleBarButton {
+    background: transparent;
+    padding: 0px 0px;
+}
+
+
+#tabsMenuButton::menu-indicator {
+    image: none;
+}
+
+
+#dockAreaCloseButton {
+    qproperty-icon: url(:/ads/images/close-button.svg), url(:/ads/images/close-button-disabled.svg) disabled;
+    qproperty-iconSize: 16px;
+}
+
+#detachGroupButton {
+    qproperty-icon: url(:/ads/images/detach-button.svg), url(:/ads/images/detach-button-disabled.svg) disabled;
+    qproperty-iconSize: 16px;
+}
+
+
+/*****************************************************************************
+ * CDockWidgetTab
+ *****************************************************************************/
+ads--CDockWidgetTab {
+    background: white; /*palette(window);*/
+    border: 1px solid rgb(64, 158, 255); /*蓝色 normal*/
+    border-width: 1px 1px 0px 1px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 0 0px;
+    qproperty-iconSize: 16px 16px; /* this is optional in case you would like to change icon size*/
+}
+
+ads--CDockWidgetTab[activeTab="true"] {
+    /*background: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 0, y2 : 0.5, stop : 0 palette(window), stop:1 palette(light));*/
+    /*background: palette(highlight);*/
+    background: rgb(64, 158, 255); /*蓝色 normal*/
+}
+
+ads--CDockWidgetTab QLabel {
+    color: rgb(64, 158, 255); /*蓝色 normal*//* palette(dark);*/
+}
+
+ads--CDockWidgetTab[activeTab="true"] QLabel {
+    color: white; /*palette(foreground);*/
+}
+
+#tabCloseButton {
+    margin-top: 2px;
+    background: none;
+    border: none;
+    padding: 0px -2px;
+    qproperty-icon: url(:/ads/images/close-button-focused.svg), url(:/ads/images/close-button-disabled.svg) disabled;
+    qproperty-iconSize: 16px;
+}
+
+#tabCloseButton:hover {
+    /*border: 1px solid rgba(0, 0, 0, 32);*/
+    background: rgba(0, 0, 0, 24);
+}
+
+#tabCloseButton:pressed {
+    background: rgba(0, 0, 0, 48);
+}
+
+/* Focus related styling */
+ads--CDockWidgetTab[focused="true"] {
+    background: rgb(64, 158, 255); /*蓝色 normal*/ /*palette(highlight);*/
+    border-color: white;/*palette(highlight);*/
+}
+
+ads--CDockWidgetTab[focused="true"] > #tabCloseButton {
+    qproperty-icon: url(:/ads/images/close-button-focused.svg)
+}
+
+ads--CDockWidgetTab[focused="true"] > #tabCloseButton:hover {
+    background: rgba(255, 255, 255, 48);
+}
+
+ads--CDockWidgetTab[focused="true"] > #tabCloseButton:pressed {
+    background: rgba(255, 255, 255, 92);
+}
+/*DockTab 上文字颜色 该Dock聚焦的时候*/
+ads--CDockWidgetTab[focused="true"] QLabel {
+    color: white;/*palette(light);*/
+}
+
+/*****************************************************************************
+ * CDockWidget
+ *****************************************************************************/
+ads--CDockWidget {
+    background: red;/*palette(light);*/
+    border-color: palette(light);
+    border-style: solid;
+    border-width: 1px 0 0 0;
+}
+
+
+QScrollArea#dockWidgetScrollArea {
+    background: white;/*red;*/
+    padding: 0px;
+    border: none;
+}
+
+/*****************************************************************************
+ *
+ * Styling of auto hide functionality
+ *
+ *****************************************************************************/
+
+
+/*****************************************************************************
+ * CAutoHideTab
+ *****************************************************************************/
+ads--CAutoHideTab {
+    qproperty-iconSize: 16px 16px; /* this is optional in case you would like to change icon size*/
+    background: none;
+    border: none;
+    padding-left: 2px;
+    padding-right: 0px;
+    text-align: center;
+    min-height: 20px;
+    padding-bottom: 2px;
+}
+
+
+ads--CAutoHideTab:hover {
+    color: palette(highlight);
+}
+
+
+ads--CAutoHideTab[iconOnly="false"][sideBarLocation="0"],
+ads--CAutoHideTab[iconOnly="false"][sideBarLocation="2"] {
+    border-top: 6px solid rgba(0, 0, 0, 48);
+}
+
+
+ads--CAutoHideTab[iconOnly="false"][sideBarLocation="1"],
+ads--CAutoHideTab[iconOnly="false"][sideBarLocation="3"] {
+    border-bottom: 6px solid rgba(0, 0, 0, 48);
+}
+
+
+
+ads--CAutoHideTab:hover[iconOnly="false"][sideBarLocation="0"],
+ads--CAutoHideTab:hover[iconOnly="false"][sideBarLocation="2"],
+ads--CAutoHideTab[iconOnly="false"][sideBarLocation="0"][activeTab="true"],
+ads--CAutoHideTab[iconOnly="false"][sideBarLocation="2"][activeTab="true"] {
+    border-top: 6px solid palette(highlight);
+}
+
+
+ads--CAutoHideTab:hover[iconOnly="false"][sideBarLocation="1"],
+ads--CAutoHideTab:hover[iconOnly="false"][sideBarLocation="3"],
+ads--CAutoHideTab[iconOnly="false"][sideBarLocation="1"][activeTab="true"],
+ads--CAutoHideTab[iconOnly="false"][sideBarLocation="3"][activeTab="true"] {
+    border-bottom: 6px solid palette(highlight);
+}
+
+
+/**
+* Auto hide tabs with icon only
+*/
+ads--CAutoHideTab[iconOnly="true"][sideBarLocation="0"] {
+    border-top: 6px solid rgba(0, 0, 0, 48);
+}
+
+ads--CAutoHideTab[iconOnly="true"][sideBarLocation="1"] {
+    border-left: 6px solid rgba(0, 0, 0, 48);
+}
+
+ads--CAutoHideTab[iconOnly="true"][sideBarLocation="2"] {
+    border-right: 6px solid rgba(0, 0, 0, 48);
+}
+
+ads--CAutoHideTab[iconOnly="true"][sideBarLocation="3"] {
+    border-bottom: 6px solid rgba(0, 0, 0, 48);
+}
+
+
+/**
+* Auto hide tabs with icon only hover
+*/
+ads--CAutoHideTab:hover[iconOnly="true"][sideBarLocation="0"],
+ads--CAutoHideTab[iconOnly="true"][sideBarLocation="0"][activeTab="true"] {
+    border-top: 6px solid palette(highlight);
+}
+
+ads--CAutoHideTab:hover[iconOnly="true"][sideBarLocation="1"],
+ads--CAutoHideTab[iconOnly="true"][sideBarLocation="1"][activeTab="true"] {
+    border-left: 6px solid palette(highlight);
+}
+
+ads--CAutoHideTab:hover[iconOnly="true"][sideBarLocation="2"],
+ads--CAutoHideTab[iconOnly="true"][sideBarLocation="2"][activeTab="true"] {
+    border-right: 6px solid palette(highlight);
+}
+
+ads--CAutoHideTab:hover[iconOnly="true"][sideBarLocation="3"],
+ads--CAutoHideTab[iconOnly="true"][sideBarLocation="3"][activeTab="true"] {
+    border-bottom: 6px solid palette(highlight);
+}
+
+/*****************************************************************************
+ * CAutoHideSideBar
+ *****************************************************************************/
+ads--CAutoHideSideBar {
+    background: palette(window);
+    border: none;
+    qproperty-spacing: 12;
+}
+
+#sideTabsContainerWidget {
+    background: transparent;
+}
+
+
+ads--CAutoHideSideBar[sideBarLocation="0"] {
+    border-bottom: 1px solid palette(dark);
+}
+
+ads--CAutoHideSideBar[sideBarLocation="1"] {
+    border-right: 1px solid palette(dark);
+}
+
+ads--CAutoHideSideBar[sideBarLocation="2"] {
+    border-left: 1px solid palette(dark);
+}
+
+ads--CAutoHideSideBar[sideBarLocation="3"] {
+    border-top: 1px solid palette(dark);
+}
+
+
+/*****************************************************************************
+ * CAutoHideDockContainer
+ *****************************************************************************/
+ads--CAutoHideDockContainer {
+    background: palette(window);
+}
+
+
+ads--CAutoHideDockContainer ads--CDockAreaTitleBar {
+    background: palette(highlight);
+    padding: 0px;
+    border: none;
+}
+
+
+/*
+* This is required because the ads--CDockAreaWidget[focused="true"] will 
+* overwrite the ads--CAutoHideDockContainer ads--CDockAreaTitleBar rule
+*/
+ads--CAutoHideDockContainer ads--CDockAreaWidget[focused="true"] ads--CDockAreaTitleBar {
+    background: palette(highlight);
+    padding: 0px;
+    border: none;
+}
+
+#autoHideTitleLabel {
+    padding-left: 4px;
+    color: palette(light);
+}
+
+
+/*****************************************************************************
+ * CAutoHideDockContainer titlebar buttons
+ *****************************************************************************/
+#dockAreaAutoHideButton {
+    qproperty-icon: url(:/ads/images/vs-pin-button.svg), url(:/ads/images/vs-pin-button-disabled.svg) disabled;
+    qproperty-iconSize: 16px;
+}
+
+
+ads--CAutoHideDockContainer #dockAreaAutoHideButton {
+    qproperty-icon: url(:/ads/images/vs-pin-button-pinned-focused.svg);
+    qproperty-iconSize: 16px;
+}
+
+
+ads--CAutoHideDockContainer #dockAreaMinimizeButton {
+    qproperty-icon: url(:/ads/images/minimize-button-focused.svg);
+    qproperty-iconSize: 16px;
+}
+
+
+ads--CAutoHideDockContainer #dockAreaCloseButton {
+    qproperty-icon: url(:/ads/images/close-button-focused.svg)
+}
+
+
+ads--CAutoHideDockContainer ads--CTitleBarButton:hover {
+    background: rgba(255, 255, 255, 48);
+}
+
+ads--CAutoHideDockContainer ads--CTitleBarButton:pressed {
+    background: rgba(255, 255, 255, 96);
+}
+
+/*****************************************************************************
+ * CAutoHideDockContainer Titlebar and Buttons
+ *****************************************************************************/
+
+
+/*****************************************************************************
+ * CResizeHandle
+ *****************************************************************************/
+ads--CResizeHandle {
+    background: palette(window);
+}
+
+ads--CAutoHideDockContainer[sideBarLocation="0"] ads--CResizeHandle {
+    border-top: 1px solid palette(dark);
+}
+
+ads--CAutoHideDockContainer[sideBarLocation="1"] ads--CResizeHandle {
+    border-left: 1px solid palette(dark);
+}
+
+ads--CAutoHideDockContainer[sideBarLocation="2"] ads--CResizeHandle {
+    border-right: 1px solid palette(dark);
+}
+
+ads--CAutoHideDockContainer[sideBarLocation="3"] ads--CResizeHandle {
+    border-top: 1px solid palette(dark);
+}

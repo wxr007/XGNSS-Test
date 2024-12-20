@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BF1A3047-A0B6-44AB-9683-A5F1EA2310CF}</ProjectGuid>
+    <Keyword>QtVS_v304</Keyword>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0</WindowsTargetPlatformVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
+    <QtInstall>Qt5.14.2</QtInstall>
+    <QtModules>core;network;gui;widgets;serialport;printsupport;charts</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
+    <QtInstall>Qt5.14.2</QtInstall>
+    <QtModules>core;network;gui;widgets;serialport;printsupport;charts</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\csdecoder\src\common;..\..\csdecoder\src\decoders;../3rd/ads/include;../3rd/qcustomplot;../3rd/qextserialport/inc;../Common/Thread;./src/Manager;./src/WinMain;./src/GUI;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ADS_NAMESPACE_ENABLED;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>qtadvanceddockingd.lib;Qt5ExtSerialPortd1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../3rd/ads/lib;../3rd/qextserialport/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>ADS_NAMESPACE_ENABLED;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\csdecoder\src\common;..\..\csdecoder\src\decoders;../3rd/ads/include;../3rd/qcustomplot;../3rd/qextserialport/inc;../Common/Thread;./src/Manager;./src/WinMain;./src/GUI;%(AdditionalIncludeDirectories);$(ProjectDir);$(Qt_INCLUDEPATH_)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>../3rd/ads/lib;../3rd/qextserialport/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>qtadvanceddocking.lib;Qt5ExtSerialPort1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <QtRcc Include="XGNSSTest.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\csdecoder\src\common\bits.c" />
+    <ClCompile Include="..\..\csdecoder\src\common\Coordinate.cpp" />
+    <ClCompile Include="..\..\csdecoder\src\common\crc.c" />
+    <ClCompile Include="..\..\csdecoder\src\common\FileManager.cpp" />
+    <ClCompile Include="..\..\csdecoder\src\common\file_info.c" />
+    <ClCompile Include="..\..\csdecoder\src\common\gnss_math.c" />
+    <ClCompile Include="..\..\csdecoder\src\common\gnss_util.c" />
+    <ClCompile Include="..\..\csdecoder\src\common\kml.cpp" />
+    <ClCompile Include="..\..\csdecoder\src\common\nmea.c" />
+    <ClCompile Include="..\..\csdecoder\src\common\parse_string.c" />
+    <ClCompile Include="..\..\csdecoder\src\common\rtkcmn.c" />
+    <ClCompile Include="..\..\csdecoder\src\decoders\ASCII\ASCII_Decoder.cpp" />
+    <ClCompile Include="..\..\csdecoder\src\decoders\Hemisphere\Hemisphere_common.cpp" />
+    <ClCompile Include="..\..\csdecoder\src\decoders\Hemisphere\Hemisphere_Decoder.cpp" />
+    <ClCompile Include="..\..\csdecoder\src\decoders\Hemisphere\hemisphere_gnss.cpp" />
+    <ClCompile Include="..\..\csdecoder\src\decoders\NMEA\NMEA_Decoder.cpp" />
+    <ClCompile Include="..\..\csdecoder\src\decoders\SPAN\SPAN_ASCII_Decoder.cpp" />
+    <ClCompile Include="..\..\csdecoder\src\decoders\SPAN\SPAN_Binary_Decoder.cpp" />
+    <ClCompile Include="..\..\csdecoder\src\decoders\Spectrum\Spectrum_decoder.cpp" />
+    <ClCompile Include="..\..\csdecoder\src\decoders\SX7\SX7_Decoder.cpp" />
+    <ClCompile Include="..\3rd\qcustomplot\qcustomplot.cpp" />
+    <ClCompile Include="..\Common\Thread\Base\TcpClientBase.cpp" />
+    <ClCompile Include="..\Common\Thread\Base\TcpServerBase.cpp" />
+    <ClCompile Include="..\Common\Thread\Base\WorkerBase.cpp" />
+    <ClCompile Include="..\Common\Thread\DataParser.cpp" />
+    <ClCompile Include="..\Common\Thread\NtripThread.cpp" />
+    <ClCompile Include="..\Common\Thread\ReadFileThread.cpp" />
+    <ClCompile Include="..\Common\Thread\ReplayThread.cpp" />
+    <ClCompile Include="..\Common\Thread\RtkServerThread.cpp" />
+    <ClCompile Include="..\Common\Thread\SerialThread.cpp" />
+    <ClCompile Include="..\Common\Thread\TcpClientThread.cpp" />
+    <ClCompile Include="src\GUI\AboutDialog.cpp" />
+    <ClCompile Include="src\GUI\BinMsgTable.cpp" />
+    <ClCompile Include="src\GUI\CommandLines.cpp" />
+    <ClCompile Include="src\GUI\ControlWidget.cpp" />
+    <ClCompile Include="src\GUI\custom\QComboBoxWithDelete.cpp" />
+    <ClCompile Include="src\GUI\custom\QListWidgetWithMenu.cpp" />
+    <ClCompile Include="src\GUI\DataTableUI.cpp" />
+    <ClCompile Include="src\GUI\GGA2ZYZ.cpp" />
+    <ClCompile Include="src\GUI\helper\Utils.cpp" />
+    <ClCompile Include="src\GUI\LogFilePath.cpp" />
+    <ClCompile Include="src\GUI\NtripClient.cpp" />
+    <ClCompile Include="src\GUI\plot\HDriftChart.cpp" />
+    <ClCompile Include="src\GUI\plot\HVChart.cpp" />
+    <ClCompile Include="src\GUI\plot\XYDriftChart.cpp" />
+    <ClCompile Include="src\GUI\QCPlot\axistag.cpp" />
+    <ClCompile Include="src\GUI\QCPlot\QCPHDriftChart.cpp" />
+    <ClCompile Include="src\GUI\QCPlot\QCPHVChart.cpp" />
+    <ClCompile Include="src\GUI\QCPlot\QCPXYDriftChart.cpp" />
+    <ClCompile Include="src\GUI\QCPlot\widgetplot2d.cpp" />
+    <ClCompile Include="src\GUI\RtkPortUI.cpp" />
+    <ClCompile Include="src\GUI\SerialportWidget.cpp" />
+    <ClCompile Include="src\GUI\StarTable.cpp">
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
+    </ClCompile>
+    <ClCompile Include="src\GUI\StreamCombine.cpp" />
+    <ClCompile Include="src\GUI\StreamEasy.cpp" />
+    <ClCompile Include="src\GUI\TcpClientWidget.cpp" />
+    <ClCompile Include="src\GUI\TriggerCommand.cpp" />
+    <ClCompile Include="src\Manager\ConfigFile.cpp" />
+    <ClCompile Include="src\Manager\DataCache.cpp" />
+    <ClCompile Include="src\Manager\LogManager.cpp" />
+    <ClCompile Include="src\Manager\ThreadManager.cpp" />
+    <ClCompile Include="src\WinMain\main.cpp" />
+    <ClCompile Include="src\WinMain\MainWindow.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="src\GUI\AboutDialog.ui" />
+    <QtUic Include="src\GUI\BinMsgTable.ui" />
+    <QtUic Include="src\GUI\CommandLines.ui" />
+    <QtUic Include="src\GUI\ControlWidget.ui" />
+    <QtUic Include="src\GUI\DataTableUI.ui" />
+    <QtUic Include="src\GUI\GGA2ZYZ.ui" />
+    <QtUic Include="src\GUI\LogFilePath.ui" />
+    <QtUic Include="src\GUI\NtripClient.ui" />
+    <QtUic Include="src\GUI\plot\HDriftChart.ui" />
+    <QtUic Include="src\GUI\plot\HVChart.ui" />
+    <QtUic Include="src\GUI\plot\XYDriftChart.ui" />
+    <QtUic Include="src\GUI\QCPlot\QCPHDriftChart.ui" />
+    <QtUic Include="src\GUI\QCPlot\QCPHVChart.ui" />
+    <QtUic Include="src\GUI\QCPlot\QCPXYDriftChart.ui" />
+    <QtUic Include="src\GUI\QCPlot\widgetplot2d.ui" />
+    <QtUic Include="src\GUI\RtkPortUI.ui" />
+    <QtUic Include="src\GUI\SerialportWidget.ui" />
+    <QtUic Include="src\GUI\StarTable.ui" />
+    <QtUic Include="src\GUI\StreamCombine.ui" />
+    <QtUic Include="src\GUI\StreamEasy.ui" />
+    <QtUic Include="src\GUI\TcpClientWidget.ui" />
+    <QtUic Include="src\GUI\TriggerCommand.ui" />
+    <QtUic Include="src\WinMain\MainWindow.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="src\GUI\SerialportWidget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="logo.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\3rd\ads\res\stylesheets\default.css" />
+    <None Include="..\3rd\ads\res\stylesheets\default_linux.css" />
+    <None Include="..\3rd\ads\res\stylesheets\focus_highlighting.css" />
+    <None Include="..\3rd\ads\res\stylesheets\focus_highlighting_linux.css" />
+    <None Include="res\style - 24-11-14.css" />
+    <None Include="res\style-dock.css" />
+    <None Include="res\style.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="src\GUI\CommandLines.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="src\GUI\ControlWidget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\csdecoder\src\common\bits.h" />
+    <ClInclude Include="..\..\csdecoder\src\common\Coordinate.h" />
+    <ClInclude Include="..\..\csdecoder\src\common\crc.h" />
+    <ClInclude Include="..\..\csdecoder\src\common\FileManager.h" />
+    <ClInclude Include="..\..\csdecoder\src\common\file_info.h" />
+    <ClInclude Include="..\..\csdecoder\src\common\gnss_math.h" />
+    <ClInclude Include="..\..\csdecoder\src\common\gnss_util.h" />
+    <ClInclude Include="..\..\csdecoder\src\common\kml.h" />
+    <ClInclude Include="..\..\csdecoder\src\common\nmea.h" />
+    <ClInclude Include="..\..\csdecoder\src\common\parse_string.h" />
+    <ClInclude Include="..\..\csdecoder\src\common\rtkcmn.h" />
+    <ClInclude Include="..\..\csdecoder\src\decoders\ASCII\ASCII_Decoder.h" />
+    <ClInclude Include="..\..\csdecoder\src\decoders\Hemisphere\Hemisphere_Decoder.h" />
+    <ClInclude Include="..\..\csdecoder\src\decoders\Hemisphere\Hemisphere_Define.h" />
+    <ClInclude Include="..\..\csdecoder\src\decoders\Hemisphere\hemisphere_gnss.h" />
+    <ClInclude Include="..\..\csdecoder\src\decoders\NMEA\NMEA_Decoder.h" />
+    <ClInclude Include="..\..\csdecoder\src\decoders\SPAN\SPAN_ASCII_Decoder.h" />
+    <ClInclude Include="..\..\csdecoder\src\decoders\SPAN\SPAN_Binary_Decoder.h" />
+    <ClInclude Include="..\..\csdecoder\src\decoders\Spectrum\Spectrum_decoder.h" />
+    <ClInclude Include="..\..\csdecoder\src\decoders\SX7\SX7_Decoder.h" />
+    <QtMoc Include="src\WinMain\MainWindow.h" />
+    <QtMoc Include="src\Manager\ConfigFile.h" />
+    <QtMoc Include="..\3rd\qcustomplot\qcustomplot.h" />
+    <ClInclude Include="..\3rd\qextserialport\inc\qextserialenumerator.h" />
+    <ClInclude Include="..\3rd\qextserialport\inc\qextserialenumerator_p.h" />
+    <ClInclude Include="..\3rd\qextserialport\inc\qextserialport.h" />
+    <ClInclude Include="..\3rd\qextserialport\inc\qextserialport_global.h" />
+    <ClInclude Include="..\3rd\qextserialport\inc\qextserialport_p.h" />
+    <QtMoc Include="src\GUI\StreamCombine.h" />
+    <QtMoc Include="src\GUI\StreamEasy.h" />
+    <QtMoc Include="src\GUI\QCPlot\widgetplot2d.h" />
+    <QtMoc Include="src\GUI\QCPlot\QCPHDriftChart.h" />
+    <QtMoc Include="src\GUI\QCPlot\QCPXYDriftChart.h" />
+    <QtMoc Include="src\GUI\QCPlot\QCPHVChart.h" />
+    <QtMoc Include="src\GUI\QCPlot\axistag.h" />
+    <ClInclude Include="src\Manager\DataCache.h" />
+    <QtMoc Include="src\Manager\LogManager.h" />
+    <QtMoc Include="src\Manager\ThreadManager.h" />
+    <QtMoc Include="..\Common\Thread\Base\TcpClientBase.h" />
+    <QtMoc Include="..\Common\Thread\Base\WorkerBase.h" />
+    <QtMoc Include="..\Common\Thread\DataParser.h" />
+    <QtMoc Include="..\Common\Thread\NtripThread.h" />
+    <QtMoc Include="..\Common\Thread\ReadFileThread.h" />
+    <QtMoc Include="..\Common\Thread\ReplayThread.h" />
+    <QtMoc Include="..\Common\Thread\SerialThread.h" />
+    <QtMoc Include="..\Common\Thread\TcpClientThread.h" />
+    <QtMoc Include="..\Common\Thread\RtkServerThread.h" />
+    <QtMoc Include="..\Common\Thread\Base\TcpServerBase.h" />
+    <QtMoc Include="src\GUI\AboutDialog.h" />
+    <QtMoc Include="src\GUI\custom\QComboBoxWithDelete.h" />
+    <QtMoc Include="src\GUI\DataTableUI.h" />
+    <QtMoc Include="src\GUI\TcpClientWidget.h" />
+    <QtMoc Include="src\GUI\RtkPortUI.h" />
+    <QtMoc Include="src\GUI\BinMsgTable.h" />
+    <QtMoc Include="src\GUI\LogFilePath.h" />
+    <QtMoc Include="src\GUI\StarTable.h" />
+    <QtMoc Include="src\GUI\GGA2ZYZ.h" />
+    <ClInclude Include="src\GUI\helper\Utils.h" />
+    <QtMoc Include="src\GUI\TriggerCommand.h" />
+    <QtMoc Include="src\GUI\NtripClient.h" />
+    <QtMoc Include="src\GUI\plot\HVChart.h" />
+    <QtMoc Include="src\GUI\plot\XYDriftChart.h" />
+    <QtMoc Include="src\GUI\plot\HDriftChart.h" />
+    <QtMoc Include="src\GUI\custom\QListWidgetWithMenu.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

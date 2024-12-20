@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BinMsgTableClass</class>
+ <widget class="QWidget" name="BinMsgTableClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1080</width>
+    <height>567</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>BinMsgTable</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QSplitter" name="splitter">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <widget class="QTableWidget" name="msgTable">
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <column>
+       <property name="text">
+        <string>BIN编号</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>个数</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QTableWidget" name="bin3Table">
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <column>
+       <property name="text">
+        <string>BIN3-内容</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>数值</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QTableWidget" name="bin111Table">
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <column>
+       <property name="text">
+        <string>BIN111-内容</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>数值</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QTableWidget" name="bin112Table">
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <column>
+       <property name="text">
+        <string>BIN112-内容</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>数值</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
