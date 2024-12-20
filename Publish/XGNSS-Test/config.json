@@ -1,0 +1,64 @@
+{
+    "Ntrip": {
+        "host": {
+            "list": [
+                "58.215.20.43"
+            ],
+            "text": "58.215.20.43"
+        },
+        "mount": {
+            "list": [
+                "WX02"
+            ],
+            "text": "WX02"
+        },
+        "password": {
+            "list": [
+                "555555"
+            ],
+            "text": "555555"
+        },
+        "port": {
+            "list": [
+                "2201"
+            ],
+            "text": "2201"
+        },
+        "username": {
+            "list": [
+                "rtkeasy"
+            ],
+            "text": "rtkeasy"
+        }
+    },
+    "RtkPort": {
+        "port": {
+            "list": [
+                "6000",
+                "1"
+            ],
+            "text": "6000"
+        }
+    },
+    "TcpClient": {
+        "host": {
+            "list": [
+                "192.168.0.1",
+                "127.0.0.1"
+            ],
+            "text": "192.168.0.1"
+        },
+        "port": {
+            "list": [
+                "8080",
+                "80"
+            ],
+            "text": "8080"
+        }
+    },
+    "logPath": "D:/data",
+    "serial": {
+        "baud": "460800",
+        "port": 0
+    }
+}

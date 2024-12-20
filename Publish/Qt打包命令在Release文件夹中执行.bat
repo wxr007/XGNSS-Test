@@ -1,0 +1,1 @@
+windeployqt XG-WebConnect.exe
