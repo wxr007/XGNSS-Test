@@ -1,0 +1,82 @@
+/*窗口之间的分割线*/
+QSplitter::handle {
+        background: palette(light);
+}
+/*主窗口背景色，表现为主窗口和子窗口之间外围一圈的填充*/
+ads--ContainerWidget, ContainerWidget {
+        background: palette(light);
+}
+/*子窗口背景色和子窗口关闭按钮背景色*/
+ads--SectionWidget, SectionWidget {
+        background: #ffffff;
+}
+/*下拉框箭头图片，一般不需要，图片会有重叠*/
+ads--SectionWidget #tabsMenuButton::menu-indicator,
+SectionWidget #tabsMenuButton::menu-indicator
+{
+        image: none;
+}
+/*子窗口标题栏空白段*/
+ads--SectionWidget #tabsContainerWidget,
+SectionWidget #tabsContainerWidget
+{
+        background: rgb(240, 240, 240); /*灰色*/
+}
+
+/*未选中tab的标签框*/
+ads--SectionTitleWidget, SectionTitleWidget {
+        background: #ffffff;
+        border-right: 1px solid rgb(0, 120, 215);
+        padding: 9px;
+}
+/*未选中tab的标签字体*/
+ads--SectionTitleWidget QLabel, SectionTitleWidget QLabel {
+        color: rgb(0, 120, 215);
+}
+/*选中tab的标签框*/
+ads--SectionTitleWidget[activeTab="true"], SectionTitleWidget[activeTab="true"] {
+        background: rgb(0, 120, 215); /*蓝色*/
+}
+/*选中tab的标签字体*/
+ads--SectionTitleWidget[activeTab="true"] QLabel, SectionTitleWidget[activeTab="true"] QLabel {
+        color: #ffffff;
+}
+/*子窗口的内容边框颜色*/
+ads--SectionContentWidget, SectionContentWidget {
+        border: 1px solid rgb(0, 120, 215);
+}
+/*浮动窗口的标题颜色*/
+ads--FloatingWidget ads--SectionTitleWidget,
+FloatingWidget SectionTitleWidget
+{
+        background: rgb(0, 120, 215);
+}
+/*浮动窗口的标题字体颜色*/
+ads--FloatingWidget ads--SectionTitleWidget QLabel,
+FloatingWidget SectionTitleWidget QLabel
+{
+        color: #ffffff;
+}
+/*浮动窗口的内容颜色*/
+ads--FloatingWidget ads--SectionContentWidget,
+FloatingWidget SectionContentWidget
+{
+        background: #ffffff;
+}
+/*子窗口的关闭按钮*/
+ads--SectionWidget QPushButton#closeButton,
+SectionWidget QPushButton#closeButton {
+        background: rgb(240, 240, 240); /*灰色*/
+        border: 1px solid rgb(240, 240, 240);
+        height: 30px;
+}
+/*浮动窗口的关闭按钮*/
+ads--FloatingWidget QPushButton#closeButton,
+FloatingWidget QPushButton#closeButton {
+        background: rgb(0, 120, 215);
+        border: 1px solid rgb(0, 120, 215);
+}
+
+QAbstractItemView {
+        border: 0;
+}
