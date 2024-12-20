@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/XGWebConnect">
+	    <file>res/fontawesome-webfont.ttf</file>
+        <file>res/style.css</file>
+        <file>res/img/add_bottom.png</file>
+        <file>res/img/add_left.png</file>
+        <file>res/img/add_right.png</file>
+        <file>res/img/add_top.png</file>
+        <file>res/img/logo.png</file>
+    </qresource>
+</RCC>

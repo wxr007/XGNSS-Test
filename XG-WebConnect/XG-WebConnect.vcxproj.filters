@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>qml;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+    </Filter>
+    <Filter Include="Source Files\WinMain">
+      <UniqueIdentifier>{5104abb2-518b-4ffc-a45c-4dea6d338dd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd">
+      <UniqueIdentifier>{b31827bd-5e04-4125-99f2-045103ed09d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd\ads">
+      <UniqueIdentifier>{4f9fc4c0-53e4-45af-bcc1-d204bd6051f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd\ads\qss">
+      <UniqueIdentifier>{04a8f9a5-4be5-4e0f-8b51-513bee060beb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI">
+      <UniqueIdentifier>{851b84d6-d8e5-4d8b-8c42-ba7703acaf13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Decoder">
+      <UniqueIdentifier>{a3794033-481f-436e-b0b7-f23e59c07cae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Decoder\Common">
+      <UniqueIdentifier>{4a6403fa-9dce-4074-bc16-16bb70fc8f8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Decoder\Decode">
+      <UniqueIdentifier>{0dace142-4d41-4ccf-8c5d-bcb94a44b9dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Decoder\Decode\Hemisphere">
+      <UniqueIdentifier>{55173e89-6606-4fb5-b129-ecce4356b49e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Decoder\Decode\NMEA">
+      <UniqueIdentifier>{ebb21685-70eb-4bfe-af8c-328c15edf726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Decoder\Decode\SPAN">
+      <UniqueIdentifier>{6f99bf2b-c296-4059-a238-271c506d3638}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Decoder\Decode\Spectrum">
+      <UniqueIdentifier>{96e377ff-f4dc-4b3e-aec5-dd4f73f89777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Decoder\Decode\SX7">
+      <UniqueIdentifier>{e8824f3f-e1b3-4d93-b4cd-a9e2480aecb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI\custom">
+      <UniqueIdentifier>{6fc5499b-cbb5-421d-9b57-49421d606b74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI\helper">
+      <UniqueIdentifier>{99a08c2e-667f-4c7f-9f3c-9e13540ab2d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Manager">
+      <UniqueIdentifier>{f95cd825-1d6e-4fc3-aa5e-6e0b70b07096}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd\qextserialport">
+      <UniqueIdentifier>{0abbb91c-b1e9-43a7-a521-e7d822e8c1c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd\qextserialport\inc">
+      <UniqueIdentifier>{20c0d0ba-f60d-499b-8fa2-27867bc91c2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd\qextserialport\src">
+      <UniqueIdentifier>{f83432d2-6753-4de6-84d1-e4063da70d03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Thread">
+      <UniqueIdentifier>{48d5b527-59a3-449d-9ff1-89b59675d000}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Thread\Base">
+      <UniqueIdentifier>{da7ec632-2d04-416b-b634-0f3a0f36e423}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="XGWebConnect.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\WinMain\main.cpp">
+      <Filter>Source Files\WinMain</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinMain\XGWebConnect.cpp">
+      <Filter>Source Files\WinMain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Thread\DataParser.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Thread\NtripThread.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Thread\SerialThread.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Thread\TcpClientThread.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Thread\RtkServerThread.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Thread\Base\TcpClientBase.cpp">
+      <Filter>Thread\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Thread\Base\WorkerBase.cpp">
+      <Filter>Thread\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Thread\Base\TcpServerBase.cpp">
+      <Filter>Thread\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\common\bits.c">
+      <Filter>Decoder\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\common\Coordinate.cpp">
+      <Filter>Decoder\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\common\crc.c">
+      <Filter>Decoder\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\common\FileManager.cpp">
+      <Filter>Decoder\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\common\file_info.c">
+      <Filter>Decoder\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\common\gnss_math.c">
+      <Filter>Decoder\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\common\gnss_util.c">
+      <Filter>Decoder\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\common\kml.cpp">
+      <Filter>Decoder\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\common\nmea.c">
+      <Filter>Decoder\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\common\parse_string.c">
+      <Filter>Decoder\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\common\rtkcmn.c">
+      <Filter>Decoder\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\decoders\Hemisphere\Hemisphere_common.cpp">
+      <Filter>Decoder\Decode\Hemisphere</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\decoders\Hemisphere\Hemisphere_Decoder.cpp">
+      <Filter>Decoder\Decode\Hemisphere</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\decoders\Hemisphere\hemisphere_gnss.cpp">
+      <Filter>Decoder\Decode\Hemisphere</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\decoders\NMEA\NMEA_Decoder.cpp">
+      <Filter>Decoder\Decode\NMEA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\decoders\SPAN\SPAN_ASCII_Decoder.cpp">
+      <Filter>Decoder\Decode\SPAN</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\decoders\SPAN\SPAN_Binary_Decoder.cpp">
+      <Filter>Decoder\Decode\SPAN</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\decoders\Spectrum\Spectrum_decoder.cpp">
+      <Filter>Decoder\Decode\Spectrum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csdecoder\src\decoders\SX7\SX7_Decoder.cpp">
+      <Filter>Decoder\Decode\SX7</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI\SerialportWidget.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI\WebSocketUI.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI\custom\QComboBoxWithDelete.cpp">
+      <Filter>Source Files\GUI\custom</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI\helper\Utils.cpp">
+      <Filter>Source Files\GUI\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Thread\Base\WebSocketServerBase.cpp">
+      <Filter>Thread\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Thread\WebSocketServerThread.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Manager\DataCache.cpp">
+      <Filter>Source Files\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Manager\LogManager.cpp">
+      <Filter>Source Files\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Manager\ThreadManager.cpp">
+      <Filter>Source Files\Manager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="src\WinMain\XGWebConnect.h">
+      <Filter>Source Files\WinMain</Filter>
+    </QtMoc>
+    <QtMoc Include="..\Common\Thread\DataParser.h">
+      <Filter>Thread</Filter>
+    </QtMoc>
+    <QtMoc Include="..\Common\Thread\NtripThread.h">
+      <Filter>Thread</Filter>
+    </QtMoc>
+    <QtMoc Include="..\Common\Thread\SerialThread.h">
+      <Filter>Thread</Filter>
+    </QtMoc>
+    <QtMoc Include="..\Common\Thread\TcpClientThread.h">
+      <Filter>Thread</Filter>
+    </QtMoc>
+    <QtMoc Include="..\Common\Thread\RtkServerThread.h">
+      <Filter>Thread</Filter>
+    </QtMoc>
+    <QtMoc Include="..\Common\Thread\Base\TcpClientBase.h">
+      <Filter>Thread\Base</Filter>
+    </QtMoc>
+    <QtMoc Include="..\Common\Thread\Base\WorkerBase.h">
+      <Filter>Thread\Base</Filter>
+    </QtMoc>
+    <QtMoc Include="..\Common\Thread\Base\TcpServerBase.h">
+      <Filter>Thread\Base</Filter>
+    </QtMoc>
+    <QtMoc Include="src\GUI\SerialportWidget.h">
+      <Filter>Source Files\GUI</Filter>
+    </QtMoc>
+    <QtMoc Include="src\GUI\WebSocketUI.h">
+      <Filter>Source Files\GUI</Filter>
+    </QtMoc>
+    <QtMoc Include="src\GUI\custom\QComboBoxWithDelete.h">
+      <Filter>Source Files\GUI\custom</Filter>
+    </QtMoc>
+    <QtMoc Include="..\Common\Thread\Base\WebSocketServerBase.h">
+      <Filter>Thread\Base</Filter>
+    </QtMoc>
+    <QtMoc Include="..\Common\Thread\WebSocketServerThread.h">
+      <Filter>Thread</Filter>
+    </QtMoc>
+    <QtMoc Include="src\Manager\LogManager.h">
+      <Filter>Source Files\Manager</Filter>
+    </QtMoc>
+    <QtMoc Include="src\Manager\ThreadManager.h">
+      <Filter>Source Files\Manager</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="src\WinMain\XGWebConnect.ui">
+      <Filter>Source Files\WinMain</Filter>
+    </QtUic>
+    <QtUic Include="src\GUI\SerialportWidget.ui">
+      <Filter>Source Files\GUI</Filter>
+    </QtUic>
+    <QtUic Include="src\GUI\WebSocketUI.ui">
+      <Filter>Source Files\GUI</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\csdecoder\src\common\bits.h">
+      <Filter>Decoder\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\csdecoder\src\common\Coordinate.h">
+      <Filter>Decoder\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\csdecoder\src\common\crc.h">
+      <Filter>Decoder\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\csdecoder\src\common\FileManager.h">
+      <Filter>Decoder\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\csdecoder\src\common\file_info.h">
+      <Filter>Decoder\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\csdecoder\src\common\gnss_math.h">
+      <Filter>Decoder\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\csdecoder\src\common\gnss_util.h">
+      <Filter>Decoder\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\csdecoder\src\common\kml.h">
+      <Filter>Decoder\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\csdecoder\src\common\nmea.h">
+      <Filter>Decoder\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\csdecoder\src\common\parse_string.h">
+      <Filter>Decoder\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\csdecoder\src\common\rtkcmn.h">
+      <Filter>Decoder\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\csdecoder\src\decoders\Hemisphere\Hemisphere_Decoder.h">
+      <Filter>Decoder\Decode\Hemisphere</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\csdecoder\src\decoders\Hemisphere\Hemisphere_Define.h">
+      <Filter>Decoder\Decode\Hemisphere</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\csdecoder\src\decoders\Hemisphere\hemisphere_gnss.h">
+      <Filter>Decoder\Decode\Hemisphere</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\csdecoder\src\decoders\NMEA\NMEA_Decoder.h">
+      <Filter>Decoder\Decode\NMEA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\csdecoder\src\decoders\SPAN\SPAN_ASCII_Decoder.h">
+      <Filter>Decoder\Decode\SPAN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\csdecoder\src\decoders\SPAN\SPAN_Binary_Decoder.h">
+      <Filter>Decoder\Decode\SPAN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\csdecoder\src\decoders\Spectrum\Spectrum_decoder.h">
+      <Filter>Decoder\Decode\Spectrum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\csdecoder\src\decoders\SX7\SX7_Decoder.h">
+      <Filter>Decoder\Decode\SX7</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI\helper\Utils.h">
+      <Filter>Source Files\GUI\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Manager\DataCache.h">
+      <Filter>Source Files\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rd\qextserialport\inc\qextserialenumerator.h">
+      <Filter>3rd\qextserialport\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rd\qextserialport\inc\qextserialenumerator_p.h">
+      <Filter>3rd\qextserialport\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rd\qextserialport\inc\qextserialport.h">
+      <Filter>3rd\qextserialport\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rd\qextserialport\inc\qextserialport_global.h">
+      <Filter>3rd\qextserialport\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rd\qextserialport\inc\qextserialport_p.h">
+      <Filter>3rd\qextserialport\inc</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\style.css">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="logo.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="logo.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
