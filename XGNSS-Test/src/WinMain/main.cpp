@@ -6,7 +6,7 @@
 #include<shobjidl_core.h>
 
 #define AppName "XGINS Test"
-#define Version "v0.3.0"
+#define Version "v0.4.8"
 
 static void initStyleSheet(QApplication& a,QString file)
 {

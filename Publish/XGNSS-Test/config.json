@@ -2,15 +2,11 @@
     "Ntrip": {
         "host": {
             "list": [
-                "58.215.20.43"
-            ],
-            "text": "58.215.20.43"
+            ]
         },
         "mount": {
             "list": [
-                "WX02"
-            ],
-            "text": "WX02"
+            ]
         },
         "password": {
             "list": [
@@ -20,15 +16,11 @@
         },
         "port": {
             "list": [
-                "2201"
-            ],
-            "text": "2201"
+            ]
         },
         "username": {
             "list": [
-                "rtkeasy"
-            ],
-            "text": "rtkeasy"
+            ]
         }
     },
     "RtkPort": {

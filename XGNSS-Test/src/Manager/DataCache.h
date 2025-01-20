@@ -108,6 +108,10 @@ struct GGA2ZYZCache {
     double maxH;
     QList<QPointF> HValueList;
     QVector<int> fixedTimeList;
+    double m_avgYaw;
+    int m_nGGACountAll;
+    int m_nHPRCountAll;
+    int m_nHPRCountFixed;
     GGA2ZYZCache() {
         init();
     }
@@ -132,6 +136,10 @@ struct GGA2ZYZCache {
         maxH = DBL_MIN;
         HValueList.clear();
         fixedTimeList.clear();
+        m_avgYaw = 0.0;
+        m_nGGACountAll = 0;
+        m_nHPRCountAll = 0;
+        m_nHPRCountFixed = 0;
     }
 };
 

@@ -3,6 +3,7 @@
 #include <QMessageBox>
 #include "ThreadManager.h"
 #include "DataCache.h"
+#include "helper/Utils.h"
 
 #define Connect_TXT u8"Connect"
 #define Disconnect_TXT u8"Disconnect"
@@ -24,6 +25,7 @@ SerialportWidget::SerialportWidget(QWidget *parent)
 
     connect(ThreadManager::Instance().m_SerialThread, SIGNAL(sgnEnable(bool)), this, SLOT(onEnable(bool)), Qt::QueuedConnection);
     connect(ThreadManager::Instance().m_SerialThread, SIGNAL(sgnOpenFailed()), this, SLOT(onOpenFailed()), Qt::QueuedConnection);
+    connect(ThreadManager::Instance().m_SerialThread, SIGNAL(sgnDataSize(const int)), this, SLOT(onDataSize(const int)), Qt::QueuedConnection);
     connect(ThreadManager::Instance().m_TcpClientThread, SIGNAL(sgnEnable(bool)), this, SLOT(onOtherStreamEnable(bool)), Qt::QueuedConnection);
 }
 
@@ -110,3 +112,10 @@ void SerialportWidget::onOtherStreamEnable(bool enable)
         ui.start_btn->setEnabled(true);
     }
 }
+
+void SerialportWidget::onDataSize(const int len)
+{
+    m_DataSize += len;
+    ui.send_size->setText(FormatBytes(m_DataSize));
+}
+

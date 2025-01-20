@@ -146,6 +146,7 @@
     <ClCompile Include="..\Common\Thread\WebSocketServerThread.cpp" />
     <ClCompile Include="src\GUI\custom\QComboBoxWithDelete.cpp" />
     <ClCompile Include="src\GUI\helper\Utils.cpp" />
+    <ClCompile Include="src\GUI\NtripClient.cpp" />
     <ClCompile Include="src\GUI\SerialportWidget.cpp" />
     <ClCompile Include="src\GUI\WebSocketUI.cpp" />
     <ClCompile Include="src\Manager\DataCache.cpp" />
@@ -158,6 +159,7 @@
     <QtMoc Include="src\WinMain\XGWebConnect.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="src\GUI\NtripClient.ui" />
     <QtUic Include="src\GUI\SerialportWidget.ui" />
     <QtUic Include="src\GUI\WebSocketUI.ui" />
     <QtUic Include="src\WinMain\XGWebConnect.ui" />
@@ -187,6 +189,7 @@
     <ClInclude Include="..\3rd\qextserialport\inc\qextserialport.h" />
     <ClInclude Include="..\3rd\qextserialport\inc\qextserialport_global.h" />
     <ClInclude Include="..\3rd\qextserialport\inc\qextserialport_p.h" />
+    <QtMoc Include="src\GUI\NtripClient.h" />
     <ClInclude Include="src\Manager\DataCache.h" />
     <QtMoc Include="src\Manager\ThreadManager.h" />
     <QtMoc Include="src\Manager\LogManager.h" />

@@ -11,6 +11,7 @@
 
 struct NEUCSV {
 	char utcTime[10];
+	char ggaTime[10];
 	uint16_t week;
 	double seconds;
 	double lat;
@@ -28,6 +29,7 @@ struct NEUCSV {
 	int sats;
 	char hdtTime[10];
 	float yaw;
+    char yaw_str[10];
 	float deltaX;
 	float deltaY;
 	float deltaP;
@@ -69,6 +71,7 @@ public:
 protected:
 	void init();
 	void loadFile(QString fileName);
+	void fillWithGGA(NEUCSV& neudata, ins_sol_t* ins, nmea_gga_t* gga);
 	void parseLine(char* line);
 	void decode();
 	void writeSingleFixFile();
@@ -101,6 +104,9 @@ private:
 	int m_breakSecond;
 	int m_loopCount;
 	double m_Center;
+	int m_nGGACountAll;
+	int m_nHPRCountAll;
+	int m_nHPRCountUsed;
 signals:
 	void sgnProgress(int present, int msecs);
 	void sgnFinished(QString filename);

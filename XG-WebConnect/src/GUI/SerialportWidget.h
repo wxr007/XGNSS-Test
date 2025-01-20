@@ -22,6 +22,8 @@ public slots:
 	void onEnable(bool enable);
 	void onOpenFailed();
 	void onOtherStreamEnable(bool enable);
+	void onDataSize(const int len);
 private:
 	Ui::SerialportWidgetClass ui;
+	uint64_t m_DataSize;
 };

@@ -210,6 +210,25 @@ void ReadFileThread::loadFile(QString fileName) {
 	fclose(file);
 }
 
+void ReadFileThread::fillWithGGA(NEUCSV& neudata,ins_sol_t* ins, nmea_gga_t* gga) {
+	neudata.week = ins->wn;
+	neudata.seconds = ins->ws;
+	strcpy(neuData.ggaTime, gga->nmea_utc);
+	char str_hour[2] = { 0 };
+	strncpy(str_hour, gga->nmea_utc, 2);
+	int hour = atoi(str_hour);
+	hour = (hour + 8) % 24;
+	sprintf(neudata.utcTime, "%02d%s", hour, gga->nmea_utc + 2);
+	//strcpy(neuData.utcTime, gga->nmea_utc);
+	neudata.lat = gga->lat;
+	neudata.lon = gga->lon;
+	neudata.hgt = gga->altitude + gga->undulation;
+	neudata.type = gga->type;
+	neudata.delay = gga->time_diff;
+	sprintf(neudata.satid, "%d", gga->satid);
+	neudata.sats = gga->sats;
+}
+
 void ReadFileThread::parseLine(char* line)
 {
 	int ret = 0;
@@ -217,28 +236,23 @@ void ReadFileThread::parseLine(char* line)
 		ret = m_NMEA_Decoder->input_txt_line(line);
 		if ($GNGGA == ret) {
 			ins_sol_t* ins = m_NMEA_Decoder->getSol();
-			neuData.week = ins->wn;
-			neuData.seconds = ins->ws;
 			nmea_gga_t* gga = m_NMEA_Decoder->getNmeaGGA();
-			char str_hour[2] = { 0 };
-			strncpy(str_hour, gga->nmea_utc, 2);
-			int hour = atoi(str_hour);
-			hour = (hour + 8) % 24;
-			sprintf(neuData.utcTime, "%02d%s", hour, gga->nmea_utc + 2);
-			//strcpy(neuData.utcTime, gga->nmea_utc);
-			neuData.lat = gga->lat;
-			neuData.lon = gga->lon;
-			neuData.hgt = gga->altitude + gga->undulation;
-			neuData.type = gga->type;
-			neuData.delay = gga->time_diff;
-			sprintf(neuData.satid, "%d", gga->satid);
-			neuData.sats = gga->sats;
-			strcpy(neuData.gstTime, "null");
-			strcpy(neuData.hdtTime, "null");
-			neuList.push_back(neuData);
-			//if (neuList.size() >= 279) {
-			neuData.sats = gga->sats;
-			//}
+			strcpy(neuData.gstTime, "");
+			if (neuList.size() > 0) {
+				int last = neuList.size() - 1;
+				if (strcmp(neuList[last].hdtTime, gga->nmea_utc) == 0) {
+					fillWithGGA(neuList[last], ins, gga);
+				}
+				else {
+					fillWithGGA(neuData, ins, gga);
+                    neuList.push_back(neuData);
+				}
+			}
+			else {
+				fillWithGGA(neuData, ins, gga);
+                neuList.push_back(neuData);
+			}				
+			DataCache::Instance().m_GGA2ZYZCache.m_nGGACountAll++;
 		}
 		else if ($GPGST == ret) {
 			nmea_gst_t* gst = m_NMEA_Decoder->getNmeaGST();
@@ -254,7 +268,70 @@ void ReadFileThread::parseLine(char* line)
 			if (neuList.size() > 0) {
 				int last = neuList.size() - 1;
 				neuList[last].yaw = hdt->trueNorthYaw;
+				sprintf(neuList[last].yaw_str, "%.3f", hdt->trueNorthYaw);
 			}
+		}
+		else if ($GNHPR == ret) {
+            nmea_hpr_t* hpr = m_NMEA_Decoder->getNmeaHPR();
+			strcpy(neuData.hdtTime, "");
+			if (neuList.size() > 0) {
+				int last = neuList.size() - 1;
+				if (strcmp(neuList[last].ggaTime, hpr->nmea_utc) == 0) {
+					strcpy(neuList[last].hdtTime, hpr->nmea_utc);
+					if (hpr->type == 4) {
+						neuList[last].yaw = hpr->yaw;
+						sprintf(neuList[last].yaw_str, "%.3f", hpr->yaw);
+					}
+				}
+				else {
+					strcpy(neuData.hdtTime, hpr->nmea_utc);
+					if (hpr->type == 4) {
+						neuData.yaw = hpr->yaw;
+						sprintf(neuData.yaw_str, "%.3f", hpr->yaw);
+					}
+					neuList.push_back(neuData);
+				}
+			}
+			else {
+				strcpy(neuData.hdtTime, hpr->nmea_utc);
+				if (hpr->type == 4) {
+					neuData.yaw = hpr->yaw;
+					sprintf(neuData.yaw_str, "%.3f", hpr->yaw);
+				}
+				neuList.push_back(neuData);
+			}
+			DataCache::Instance().m_GGA2ZYZCache.m_nHPRCountAll++;
+		}
+		else if ($PSAT_HPR == ret) {
+			nmea_hpr_t* hpr = m_NMEA_Decoder->getNmeaHPR();
+			strcpy(neuData.hdtTime, "");
+			if (neuList.size() > 0) {
+				int last = neuList.size() - 1;
+				if (strcmp(neuList[last].ggaTime, hpr->nmea_utc) == 0) {
+					strcpy(neuList[last].hdtTime, hpr->nmea_utc);
+					if (hpr->type == 4) {
+						neuList[last].yaw = hpr->yaw;
+                        sprintf(neuList[last].yaw_str, "%.3f", hpr->yaw);
+					}
+				}
+				else {
+					strcpy(neuData.hdtTime, hpr->nmea_utc);
+					if (hpr->type == 4) {
+						neuData.yaw = hpr->yaw;
+                        sprintf(neuData.yaw_str, "%.3f", hpr->yaw);
+					}
+					neuList.push_back(neuData);
+				}
+			}
+			else {
+				strcpy(neuData.hdtTime, hpr->nmea_utc);
+				if (hpr->type == 4) {
+					neuData.yaw = hpr->yaw;
+                    sprintf(neuData.yaw_str, "%.3f", hpr->yaw);
+				}
+				neuList.push_back(neuData);
+			}
+			DataCache::Instance().m_GGA2ZYZCache.m_nHPRCountAll++;
 		}
 	}
 	else {
@@ -269,7 +346,7 @@ void ReadFileThread::parseLine(char* line)
 			time2epoch(t, ep);
 			sprintf(neuData.utcTime, "%02d%02d%05.2f", ((int)ep[3] + 8) % 24, (int)ep[4], ep[5]);
 			sprintf(neuData.gstTime, "%02d%02d%05.2f", (int)ep[3], (int)ep[4], ep[5]);
-			strcpy(neuData.hdtTime, "null");
+			//strcpy(neuData.hdtTime, "");
 			neuData.lat = ins->latitude;
 			neuData.lon = ins->longitude;
 			neuData.hgt = ins->altitude + ins->undulation;
@@ -278,6 +355,7 @@ void ReadFileThread::parseLine(char* line)
 			neuData.HRMS = sqrt(ins->latitude_std * ins->latitude_std + ins->longitude_std * ins->longitude_std);
 			neuData.VRMS = ins->altitude_std;
 			neuData.yaw = ins->azimuth;
+            sprintf(neuData.yaw_str, "%.3f", ins->azimuth);
 			neuList.push_back(neuData);
 		}
 		else if (BESTPOSA == ret && (GGA2XYZ_BESTPOSA == m_Format || GGA2XYZ_ALL == m_Format)) {
@@ -290,7 +368,7 @@ void ReadFileThread::parseLine(char* line)
 			time2epoch(t, ep);
 			sprintf(neuData.utcTime, "%02d%02d%05.2f", ((int)ep[3] + 8) % 24, (int)ep[4], ep[5]);
 			sprintf(neuData.gstTime, "%02d%02d%05.2f", (int)ep[3], (int)ep[4], ep[5]);
-			strcpy(neuData.hdtTime, "null");
+			//strcpy(neuData.hdtTime, "");
 			neuData.lat = bestpos->lat;
 			neuData.lon = bestpos->lon;
 			neuData.hgt = bestpos->hgt + bestpos->undulation;
@@ -312,7 +390,7 @@ void ReadFileThread::parseLine(char* line)
 			time2epoch(t, ep);
 			sprintf(neuData.utcTime, "%02d%02d%05.2f", ((int)ep[3] + 8) % 24, (int)ep[4], ep[5]);
 			sprintf(neuData.gstTime, "%02d%02d%05.2f", (int)ep[3], (int)ep[4], ep[5]);
-			strcpy(neuData.hdtTime, "null");
+			//strcpy(neuData.hdtTime, "");
 			neuData.lat = rtk->lat;
 			neuData.lon = rtk->lon;
 			neuData.hgt = rtk->hgt + rtk->undulation;
@@ -334,7 +412,7 @@ void ReadFileThread::parseLine(char* line)
 			time2epoch(t, ep);
 			sprintf(neuData.utcTime, "%02d%02d%05.2f", ((int)ep[3] + 8) % 24, (int)ep[4], ep[5]);
 			sprintf(neuData.gstTime, "%02d%02d%05.2f", (int)ep[3], (int)ep[4], ep[5]);
-			strcpy(neuData.hdtTime, "null");
+			//strcpy(neuData.hdtTime, "");
 			neuData.lat = ppp->lat;
 			neuData.lon = ppp->lon;
 			neuData.hgt = ppp->hgt + ppp->undulation;
@@ -390,6 +468,21 @@ void ReadFileThread::decode()
 		m_baseXYH = m_crd.BLH2xyh(avgBLH, D2R(m_Center));
 	}
 	DataCache::Instance().m_GGA2ZYZCache.baseXYH = m_baseXYH;
+	//计算航向均值
+	{
+		DataCache::Instance().m_GGA2ZYZCache.m_avgYaw = 0.0;
+		double sum_yaw = 0.0;
+        int sumCount = 0;
+        for (int i = 0; i < neuList.size(); i++) {
+            if (neuList[i].yaw == 0)
+                continue;
+            sum_yaw += neuList[i].yaw;
+            sumCount++;
+        }
+        if (sumCount > 0) {
+			DataCache::Instance().m_GGA2ZYZCache.m_avgYaw = sum_yaw / sumCount;
+        }
+	}
 
 	QString kmlFileName = m_ReadFileName.left(m_ReadFileName.lastIndexOf('.')) + ".kml";
 	FILE* kml = NULL;
@@ -429,75 +522,99 @@ void ReadFileThread::decode()
 				}
 			}
 		}
-
-		if (neuList[i].type == 0) {//未定位
-			output.write("\n");
-			continue;
-		}
-		if (m_SolSatusType == FIXED_TYPE_SOL && neuList[i].type != 4) {//选择fixed选项
-			output.write("\n");
-			continue;
-		}
-		if (neuList[i].delay > m_delayLimit) {
-			output.write("\n");
-			continue;
-		}
-		if (second % 60 > m_secondOfMinute) {
-			output.write("\n");
-			continue;
-		}
-		if (m_interval > 1) {
-			if (second % m_interval != 0) {
-				output.write("\n");
-				continue;
-			}
-		}
 		count++;
-		BLHCoord BLH(D2R(neuList[i].lat), D2R(neuList[i].lon), neuList[i].hgt);
-		xyhCoord xyh = m_crd.BLH2xyh(BLH,D2R(m_Center));
-		neuList[i].E = xyh.dE;
-		neuList[i].N = xyh.dN;
-		neuList[i].U = xyh.dU;
-		double deltaE = neuList[i].E - m_baseXYH.dE;
-		double deltaN = neuList[i].N - m_baseXYH.dN;
-		double deltaP = sqrt(deltaE * deltaE + deltaN * deltaN);
-		double deltaH = neuList[i].U - m_baseXYH.dU;
-		//写csv文件
-		//output.write(QString::asprintf("%s,%12.3f,%12.3f,%7.2f,%2d,%6.2f,%8s,%10s,%8.3f,%8.3f,%3d,%10s,%7.2f,%10.4f,%10.4f,%10.4f,%10.4f\n", neuList[i].utcTime, neuList[i].N, neuList[i].E, neuList[i].U, neuList[i].type, neuList[i].delay, neuList[i].satid, neuList[i].gstTime, neuList[i].HRMS, neuList[i].VRMS, neuList[i].sats, neuList[i].hdtTime, neuList[i].yaw, deltaN, deltaE, deltaP, deltaH).toLocal8Bit());
-		output.write(QString::asprintf("%s,%.3f,%.3f,%.3f,%d,%.2f,%s,%s,%.3f,%.3f,%02d,%s,%s,%.4f,%.4f,%.4f,%.4f\n", neuList[i].utcTime, neuList[i].N, neuList[i].E, neuList[i].U, neuList[i].type, neuList[i].delay, neuList[i].satid, neuList[i].gstTime, neuList[i].HRMS, neuList[i].VRMS, neuList[i].sats, neuList[i].hdtTime, "", deltaN, deltaE, deltaP, deltaH).toLocal8Bit());
-		//写kml文件
-		if (kml) {
-			print_kml_gga(kml, neuList[i].lat, neuList[i].lon, neuList[i].hgt, neuList[i].type, neuList[i].week, neuList[i].seconds, neuList[i].yaw,NULL);
+		QString gga_str;
+		QString gst_str;
+		QString hpr_str;
+		QString delta_str;
+
+		if (neuList[i].delay > m_delayLimit) {
+			//output.write("\n");
+			//continue;
+			gga_str = " , , , , , , ,";
+			gst_str = " , , , ,";
+			delta_str = " , , ,";
+		}
+		else if (second % 60 > m_secondOfMinute) {
+			//output.write("\n");
+			//continue;
+			gga_str = " , , , , , , ,";
+			gst_str = " , , , ,";
+			delta_str = " , , ,";
+		}
+		else if (m_interval > 1 && second % m_interval != 0) {
+			//output.write("\n");
+			//continue;
+			gga_str = " , , , , , , ,";
+			gst_str = " , , , ,";
+			delta_str = " , , ,";
+		}
+		else if (neuList[i].type == 0 || m_SolSatusType == FIXED_TYPE_SOL && neuList[i].type != 4) {//未定位或者选择fixed选项
+			gga_str = " , , , , , , ,";
+			gst_str = " , , , ,";
+			delta_str = " , , ,";
+		}
+		else {
+			BLHCoord BLH(D2R(neuList[i].lat), D2R(neuList[i].lon), neuList[i].hgt);
+			xyhCoord xyh = m_crd.BLH2xyh(BLH, D2R(m_Center));
+			neuList[i].E = xyh.dE;
+			neuList[i].N = xyh.dN;
+			neuList[i].U = xyh.dU;
+			double deltaE = neuList[i].E - m_baseXYH.dE;
+			double deltaN = neuList[i].N - m_baseXYH.dN;
+			double deltaP = sqrt(deltaE * deltaE + deltaN * deltaN);
+			double deltaH = neuList[i].U - m_baseXYH.dU;
+			//写csv文件
+			gga_str = QString::asprintf("%s,%.3f,%.3f,%.3f,%d,%.2f,%s,",
+				neuList[i].utcTime, neuList[i].N, neuList[i].E, neuList[i].U, neuList[i].type, neuList[i].delay, neuList[i].satid);
+			gst_str = QString::asprintf("%s,%.3f,%.3f,%02d,", neuList[i].gstTime, neuList[i].HRMS, neuList[i].VRMS, neuList[i].sats);
+			delta_str = QString::asprintf("%.4f,%.4f,%.4f,%.4f", deltaN, deltaE, deltaP, deltaH);
+
+			//output.write(QString::asprintf("%s,%.3f,%.3f,%.3f,%d,%.2f,%s, %s,%.3f,%.3f,%02d, %s,%s,%.4f,%.4f,%.4f,%.4f\n",
+			//	neuList[i].utcTime, neuList[i].N, neuList[i].E, neuList[i].U, neuList[i].type, neuList[i].delay, neuList[i].satid, 
+			//	neuList[i].gstTime, neuList[i].HRMS, neuList[i].VRMS, neuList[i].sats, 
+			//	neuList[i].hdtTime, yaw, deltaN, deltaE, deltaP, deltaH).toLocal8Bit());
+			// 
+			//写kml文件
+			if (kml) {
+				print_kml_gga(kml, neuList[i].lat, neuList[i].lon, neuList[i].hgt, neuList[i].type, neuList[i].week, neuList[i].seconds, neuList[i].yaw, NULL);
+			}
+
+			double E = neuList[i].E - m_baseXYH.dE;
+			double N = neuList[i].N - m_baseXYH.dN;
+			DataCache::Instance().m_GGA2ZYZCache.minX = min(DataCache::Instance().m_GGA2ZYZCache.minX, (double)E);
+			DataCache::Instance().m_GGA2ZYZCache.maxX = max(DataCache::Instance().m_GGA2ZYZCache.maxX, (double)E);
+			DataCache::Instance().m_GGA2ZYZCache.minY = min(DataCache::Instance().m_GGA2ZYZCache.minY, (double)N);
+			DataCache::Instance().m_GGA2ZYZCache.maxY = max(DataCache::Instance().m_GGA2ZYZCache.maxY, (double)N);
+			if (neuList[i].type == 1) {
+				signalList.append(QPointF(E, N));
+			}
+			else if (neuList[i].type == 2) {
+				dGPSList.append(QPointF(E, N));
+			}
+			else if (neuList[i].type == 5) {
+				floatList.append(QPointF(E, N));
+			}
+			else if (neuList[i].type == 4) {
+				fixedList.append(QPointF(E, N));
+			}
+			else if (neuList[i].type == 3) {
+				insList.append(QPointF(E, N));
+			}
+			double U = neuList[i].U - m_baseXYH.dU;
+			if (DataCache::Instance().m_GGA2ZYZCache.minT == 0.0)
+				DataCache::Instance().m_GGA2ZYZCache.minT = neuList[i].seconds;
+			DataCache::Instance().m_GGA2ZYZCache.maxT = neuList[i].seconds;
+			DataCache::Instance().m_GGA2ZYZCache.minH = min(DataCache::Instance().m_GGA2ZYZCache.minH, (double)U);
+			DataCache::Instance().m_GGA2ZYZCache.maxH = max(DataCache::Instance().m_GGA2ZYZCache.maxH, (double)U);
+			DataCache::Instance().m_GGA2ZYZCache.HValueList.append(QPointF(neuList[i].seconds, U));
 		}
 
-		double E = neuList[i].E - m_baseXYH.dE;
-		double N = neuList[i].N - m_baseXYH.dN;
-		DataCache::Instance().m_GGA2ZYZCache.minX = min(DataCache::Instance().m_GGA2ZYZCache.minX, (double)E);
-		DataCache::Instance().m_GGA2ZYZCache.maxX = max(DataCache::Instance().m_GGA2ZYZCache.maxX, (double)E);
-		DataCache::Instance().m_GGA2ZYZCache.minY = min(DataCache::Instance().m_GGA2ZYZCache.minY, (double)N);
-		DataCache::Instance().m_GGA2ZYZCache.maxY = max(DataCache::Instance().m_GGA2ZYZCache.maxY, (double)N);
-		if (neuList[i].type == 1) {
-			signalList.append(QPointF(E, N));
-		}
-		else if (neuList[i].type == 2) {
-			dGPSList.append(QPointF(E, N));
-		}
-		else if (neuList[i].type == 5) {
-			floatList.append(QPointF(E, N));
-		}
-		else if (neuList[i].type == 4) {
-			fixedList.append(QPointF(E, N));
-		}
-		else if (neuList[i].type == 3) {
-			insList.append(QPointF(E, N));
-		}
-		double U = neuList[i].U - m_baseXYH.dU;
-		if(DataCache::Instance().m_GGA2ZYZCache.minT == 0.0)
-			DataCache::Instance().m_GGA2ZYZCache.minT = neuList[i].seconds;
-		DataCache::Instance().m_GGA2ZYZCache.maxT = neuList[i].seconds;
-		DataCache::Instance().m_GGA2ZYZCache.minH = min(DataCache::Instance().m_GGA2ZYZCache.minH, (double)U);
-		DataCache::Instance().m_GGA2ZYZCache.maxH = max(DataCache::Instance().m_GGA2ZYZCache.maxH, (double)U);
-		DataCache::Instance().m_GGA2ZYZCache.HValueList.append(QPointF(neuList[i].seconds, U));
+
+		hpr_str = QString::asprintf("%s,%s,", neuList[i].hdtTime, neuList[i].yaw_str);
+		DataCache::Instance().m_GGA2ZYZCache.m_nHPRCountFixed++;
+
+		output.write((gga_str + gst_str + hpr_str + delta_str +"\n").toLocal8Bit());
 	}
 	DataCache::Instance().m_GGA2ZYZCache.fixedTimeList.append(fixedTimeList);
 	DataCache::Instance().m_GGA2ZYZCache.signalCount = signalList.size();

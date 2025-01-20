@@ -48,7 +48,7 @@
 #define TITLE_About				u8"About"
 #define TITLE_HVChart			u8"HVChart"
 #define TITLE_QCPHVChart		u8"QCPHVChart"
-#define TITLE_GGA2ZYZ			u8"GGA2ZYZ"
+#define TITLE_GGA2ZYZ			u8"GGA2XYZ"
 
 MainWindow::MainWindow(QWidget *parent, QString name, QString version)
 	: QMainWindow(parent)
@@ -79,7 +79,7 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString version)
 	m_StarTableDock = new ads::CDockWidget(TITLE_StarTable);
 	m_StarTableDock->setWidget(new StarTable());
 	//m_HVChartDock = new ads::CDockWidget(TITLE_HVChart);
- //   m_HVChartDock->setWidget(new HVChart());
+	//m_HVChartDock->setWidget(new HVChart());
 	m_QCPHVChartDock = new ads::CDockWidget(TITLE_HVChart);
 	m_QCPHVChartDock->setWidget(new QCPHVChart());
 	m_GGA2ZYZDock = new ads::CDockWidget(TITLE_GGA2ZYZ);

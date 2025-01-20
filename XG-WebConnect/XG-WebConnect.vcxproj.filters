@@ -197,6 +197,9 @@
     <ClCompile Include="src\Manager\ThreadManager.cpp">
       <Filter>Source Files\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="src\GUI\NtripClient.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="src\WinMain\XGWebConnect.h">
@@ -247,6 +250,9 @@
     <QtMoc Include="src\Manager\ThreadManager.h">
       <Filter>Source Files\Manager</Filter>
     </QtMoc>
+    <QtMoc Include="src\GUI\NtripClient.h">
+      <Filter>Source Files\GUI</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="src\WinMain\XGWebConnect.ui">
@@ -256,6 +262,9 @@
       <Filter>Source Files\GUI</Filter>
     </QtUic>
     <QtUic Include="src\GUI\WebSocketUI.ui">
+      <Filter>Source Files\GUI</Filter>
+    </QtUic>
+    <QtUic Include="src\GUI\NtripClient.ui">
       <Filter>Source Files\GUI</Filter>
     </QtUic>
   </ItemGroup>

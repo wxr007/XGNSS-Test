@@ -4,7 +4,7 @@
 #include <QFont>
 
 #define AppName "WebConnect"
-#define Version "v0.0.1"
+#define Version "v0.1.0"
 
 static void initStyleSheet(QApplication& a, QString file)
 {

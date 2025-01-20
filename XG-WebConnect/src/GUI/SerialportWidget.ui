@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>290</width>
-    <height>112</height>
+    <width>359</width>
+    <height>150</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,31 +16,6 @@
   <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0">
    <item>
     <layout class="QGridLayout" name="gridLayout" columnstretch="0,1">
-     <item row="0" column="1">
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QComboBox" name="port_box">
-         <item>
-          <property name="text">
-           <string>com1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>com2</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="refresh_btn">
-         <property name="text">
-          <string>R</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
      <item row="1" column="1">
       <widget class="QComboBox" name="baud_box">
        <property name="editable">
@@ -88,6 +63,13 @@
        </item>
       </widget>
      </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_12">
+       <property name="text">
+        <string>BaudRate</string>
+       </property>
+      </widget>
+     </item>
      <item row="0" column="0">
       <widget class="QLabel" name="serial_label">
        <property name="text">
@@ -95,10 +77,42 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_12">
+     <item row="0" column="1">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QComboBox" name="port_box">
+         <item>
+          <property name="text">
+           <string>com1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>com2</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="refresh_btn">
+         <property name="text">
+          <string>R</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label">
        <property name="text">
-        <string>BaudRate</string>
+        <string>Bytes</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="send_size">
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

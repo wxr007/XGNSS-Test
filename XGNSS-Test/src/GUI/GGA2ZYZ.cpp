@@ -158,6 +158,18 @@ void GGA2ZYZ::onFinished(QString filename)
 	ui.logText->append(line); message += line + "\n";
 	line = QString::asprintf(u8"惯导解个数：%d", DataCache::Instance().m_GGA2ZYZCache.insCount);
 	ui.logText->append(line); message += line + "\n";
+	//GGA总数
+    line = QString::asprintf(u8"GGA总数：%d", DataCache::Instance().m_GGA2ZYZCache.m_nGGACountAll);
+	ui.logText->append(line); message += line + "\n";
+	//航向平均值
+	line = QString::asprintf(u8"航向平均值：%.3f°", DataCache::Instance().m_GGA2ZYZCache.m_avgYaw);
+    ui.logText->append(line); message += line + "\n";
+	//航向个数
+	line = QString::asprintf(u8"航向个数：%d", DataCache::Instance().m_GGA2ZYZCache.m_nHPRCountFixed);
+	ui.logText->append(line); message += line + "\n";
+	//航向总数
+    line = QString::asprintf(u8"航向总数：%d", DataCache::Instance().m_GGA2ZYZCache.m_nHPRCountAll);
+    ui.logText->append(line); message += line + "\n";
 	ui.logText->append("");
 
 	QVector<int> fixedTimeList = DataCache::Instance().m_GGA2ZYZCache.fixedTimeList;

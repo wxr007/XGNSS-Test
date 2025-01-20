@@ -3,6 +3,7 @@
 #include <QtWidgets/QWidget>
 #include "ui_XGWebConnect.h"
 #include "SerialportWidget.h"
+#include "NtripClient.h"
 #include "WebSocketUI.h"
 
 class XGWebConnect : public QWidget
@@ -16,5 +17,6 @@ public:
 private:
     Ui::XGWebConnectClass ui;
     SerialportWidget* m_SerialportWidget;
+    NtripClient* m_NtripClient;
     WebSocketUI* m_WebSocketUI;
 };
