@@ -71,18 +71,18 @@ ControlWidget::ControlWidget(QWidget *parent)
 ControlWidget::~ControlWidget()
 {}
 
-void ControlWidget::saveCommands()
+void ControlWidget::saveConfig(QJsonObject& config)
 {
 	if (m_Cmds) {
-		m_Cmds->saveCommands();
+		m_Cmds->saveConfig(config);
 		m_Cmds->saveHistory();
 	}
 }
 
-void ControlWidget::loadCommands()
+void ControlWidget::loadConfig(QJsonObject& config)
 {
 	if (m_Cmds) {
-		m_Cmds->loadCommands();
+		m_Cmds->loadConfig(config);
 		m_Cmds->loadHistory();
 	}
 }

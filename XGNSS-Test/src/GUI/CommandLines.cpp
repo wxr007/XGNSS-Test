@@ -28,33 +28,27 @@ CommandLines::~CommandLines()
 {
 }
 
-void CommandLines::saveCommands()
+void CommandLines::saveConfig(QJsonObject& config)
 {
-	QFile file("./commands.txt");
-	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-		return;
-	QTextStream out(&file);
+	QJsonArray cmdsJson;
 	for (int i = 0; i < ui.cmd_list->count(); i++) {
 		if (ui.cmd_list->item(i)) {
-			out << ui.cmd_list->item(i)->text() << endl;
+			cmdsJson.append(ui.cmd_list->item(i)->text());
 		}
 	}
+	config.insert("commands", cmdsJson);
 }
 
-void CommandLines::loadCommands()
+void CommandLines::loadConfig(QJsonObject& config)
 {
-	QFile file("./commands.txt");
-	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-		return;
-	QTextStream in(&file);
-	while (!in.atEnd()) {
-		QString line = in.readLine();
-		if (line.isEmpty())
+	QJsonArray cmdsJson = config["commands"].toArray();
+	for (int i = 0; i < cmdsJson.size(); i++) {
+		if (cmdsJson[i].toString().trimmed().isEmpty()) {
 			continue;
-		ui.cmd_list->addItem(line);
+		}
+		ui.cmd_list->addItem(cmdsJson[i].toString());
 	}
 }
-
 void CommandLines::saveHistory()
 {
 	QFile file("./history.txt");

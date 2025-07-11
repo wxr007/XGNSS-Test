@@ -56,9 +56,11 @@
             "text": "80"
         }
     },
+    "commands": [
+    ],
     "logPath": "D:/data",
     "serial": {
-        "baud": "460800",
-        "port": 0
+        "baud": "115200",
+        "port": -1
     }
 }

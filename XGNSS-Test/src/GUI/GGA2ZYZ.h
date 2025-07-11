@@ -17,6 +17,8 @@ class GGA2ZYZ : public QWidget
 public:
 	GGA2ZYZ(QWidget *parent = nullptr);
 	~GGA2ZYZ();
+	void saveSettings();
+    void loadSettings();
 public slots:
 	void onSelectPathClicked();
 	void onPlanarProjection();

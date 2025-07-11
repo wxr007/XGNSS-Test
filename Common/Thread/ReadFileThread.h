@@ -27,13 +27,20 @@ struct NEUCSV {
 	float HRMS;
 	float VRMS;
 	int sats;
+	int8_t has_hpr;
 	char hdtTime[10];
+	double hdt_ws;
 	float yaw;
+	float pitch;
     char yaw_str[10];
 	float deltaX;
 	float deltaY;
 	float deltaP;
 	float deltaH;
+	char rmcTime[10];
+	float rmcVelocity;
+	float rmcCourse;//对地航向
+	char rmcStatus; //S=安全; C=警告; U=不安全; V=导航无效
 };
 
 class ReadFileThread  : public QThread
@@ -72,6 +79,7 @@ protected:
 	void init();
 	void loadFile(QString fileName);
 	void fillWithGGA(NEUCSV& neudata, ins_sol_t* ins, nmea_gga_t* gga);
+	void utc2cst(char* cst_time, char* utc_time);
 	void parseLine(char* line);
 	void decode();
 	void writeSingleFixFile();
@@ -85,7 +93,7 @@ private:
 	ASCII_Decoder* m_ASCII_Decoder;
 	NMEA_Decoder* m_NMEA_Decoder;
 	SPAN_ASCII_Decoder* m_SPAN_ASCII_Decoder;
-	NEUCSV neuData;
+	//NEUCSV neuData;
 	QVector<NEUCSV> neuList;
 	QVector<int> fixedTimeList;
 	QMap<QString,QVector<int>> allFixedTimeList;

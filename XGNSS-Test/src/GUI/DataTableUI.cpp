@@ -265,7 +265,7 @@ void DataTableUI::onClearData()
 	setItemValue(ui.tableWidget, 5, 0.0);
 	setItemValue(ui.tableWidget, 6, 0.0);
 	setItemValue(ui.tableWidget, 7, 0);
-	setItemValue(ui.tableWidget, 8, 0);
+	setItemString(ui.tableWidget, 8, "0B");
 	setItemValue(ui.tableWidget_2,0, 0);
 	setItemValue(ui.tableWidget_2,1, 0.0);
 	setItemValue(ui.tableWidget_2,2, 0.0);

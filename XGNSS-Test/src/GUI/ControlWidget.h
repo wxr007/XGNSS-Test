@@ -14,8 +14,8 @@ class ControlWidget : public QWidget
 public:
 	ControlWidget(QWidget *parent = nullptr);
 	~ControlWidget();
-	void saveCommands();
-	void loadCommands();
+	void saveConfig(QJsonObject& config);
+	void loadConfig(QJsonObject& config);
 public slots:
 	void onCmdsClicked();
 	void onSendClicked();

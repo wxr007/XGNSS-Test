@@ -65,22 +65,22 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\csdecoder\src\common;..\..\csdecoder\src\decoders;../3rd/ads/include;../3rd/qcustomplot;../3rd/qextserialport/inc;../Common/Thread;./src/Manager;./src/WinMain;./src/GUI;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\csdecoder\src\common;..\..\csdecoder\src\decoders;../3rd/ads/include;../3rd/qcustomplot;../3rd/qextserialport/inc;../3rd/QXlsx/header;../Common/Thread;./src/Manager;./src/WinMain;./src/GUI;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ADS_NAMESPACE_ENABLED;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>qtadvanceddockingd.lib;Qt5ExtSerialPortd1.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../3rd/ads/lib;../3rd/qextserialport/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>qtadvanceddockingd.lib;Qt5ExtSerialPortd1.lib;QXlsx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../3rd/ads/lib;../3rd/qextserialport/lib;../3rd/QXlsx/lib/debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>ADS_NAMESPACE_ENABLED;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\csdecoder\src\common;..\..\csdecoder\src\decoders;../3rd/ads/include;../3rd/qcustomplot;../3rd/qextserialport/inc;../Common/Thread;./src/Manager;./src/WinMain;./src/GUI;%(AdditionalIncludeDirectories);$(ProjectDir);$(Qt_INCLUDEPATH_)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\csdecoder\src\common;..\..\csdecoder\src\decoders;../3rd/ads/include;../3rd/qcustomplot;../3rd/qextserialport/inc;../3rd/QXlsx/header;../Common/Thread;./src/Manager;./src/WinMain;./src/GUI;%(AdditionalIncludeDirectories);$(ProjectDir);$(Qt_INCLUDEPATH_)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>../3rd/ads/lib;../3rd/qextserialport/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>qtadvanceddocking.lib;Qt5ExtSerialPort1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../3rd/ads/lib;../3rd/qextserialport/lib;../3rd/QXlsx/lib/release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>qtadvanceddocking.lib;Qt5ExtSerialPort1.lib;QXlsx.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">

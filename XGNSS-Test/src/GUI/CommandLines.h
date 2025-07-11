@@ -2,6 +2,8 @@
 
 #include <QWidget>
 #include "ui_CommandLines.h"
+#include <QJsonObject>
+#include <QJsonArray>
 
 class CommandLines : public QWidget
 {
@@ -10,8 +12,8 @@ class CommandLines : public QWidget
 public:
 	CommandLines(QWidget *parent = nullptr);
 	~CommandLines();
-	void saveCommands();
-	void loadCommands();
+	void saveConfig(QJsonObject& config);
+	void loadConfig(QJsonObject& config);
 	void saveHistory();
 	void loadHistory();
 public slots:

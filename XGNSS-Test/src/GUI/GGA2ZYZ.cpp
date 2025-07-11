@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include "ThreadManager.h"
 #include "DataCache.h"
+#include <QSettings>
 
 GGA2ZYZ::GGA2ZYZ(QWidget *parent)
 	: QWidget(parent)
@@ -30,6 +31,18 @@ GGA2ZYZ::~GGA2ZYZ()
 {
 	ui.listWidget->clear();
 	closeAllChidren();
+}
+
+void GGA2ZYZ::saveSettings()
+{
+	QSettings settings("XinGang", "GNSS_Test");
+	settings.setValue("filePath", ui.m_EditFilePath->text());
+}
+
+void GGA2ZYZ::loadSettings()
+{
+	QSettings settings("XinGang", "GNSS_Test");
+	ui.m_EditFilePath->setText(settings.value("filePath").toString());
 }
 
 void GGA2ZYZ::onSelectPathClicked()
@@ -161,8 +174,17 @@ void GGA2ZYZ::onFinished(QString filename)
 	//GGA总数
     line = QString::asprintf(u8"GGA总数：%d", DataCache::Instance().m_GGA2ZYZCache.m_nGGACountAll);
 	ui.logText->append(line); message += line + "\n";
+	//平均延迟
+	//line = QString::asprintf(u8"平均延迟：%.2f", DataCache::Instance().m_GGA2ZYZCache.avgDelay);
+	//ui.logText->append(line); message += line + "\n";
+    //延迟范围
+	line = QString::asprintf(u8"延迟：%.1f-%.1f ",DataCache::Instance().m_GGA2ZYZCache.minDelay, DataCache::Instance().m_GGA2ZYZCache.maxDelay);
+    ui.logText->append(line); message += line + "\n";
 	//航向平均值
 	line = QString::asprintf(u8"航向平均值：%.3f°", DataCache::Instance().m_GGA2ZYZCache.m_avgYaw);
+    ui.logText->append(line); message += line + "\n";
+	//俯仰角平均值
+	line = QString::asprintf(u8"俯仰角平均值：%.3f°", DataCache::Instance().m_GGA2ZYZCache.m_avgPitch);
     ui.logText->append(line); message += line + "\n";
 	//航向个数
 	line = QString::asprintf(u8"航向个数：%d", DataCache::Instance().m_GGA2ZYZCache.m_nHPRCountFixed);

@@ -160,9 +160,9 @@ void MainWindow::closeEvent(QCloseEvent * event)
 void MainWindow::SaveEvent()
 {
 	ControlWidget* w = qobject_cast<ControlWidget*>(m_ConsoleDock->widget());
-	if (w) {
-		w->saveCommands();
-	}
+	//if (w) {
+	//	w->saveCommands();
+	//}
 	saveConfig(CONFIG_FILE);
 #ifdef SAVE_LAYOUT
     saveLayout("MiniLayout.ini");
@@ -176,14 +176,15 @@ void MainWindow::LoadEvent()
 	//loadPerspectives();
 	onChangeLayout("MiniLayout");
 	loadConfig(CONFIG_FILE);
-	ControlWidget* w = qobject_cast<ControlWidget*>(m_ConsoleDock->widget());
-	if (w) {
-		w->loadCommands();
-	}
+	//ControlWidget* w = qobject_cast<ControlWidget*>(m_ConsoleDock->widget());
+	//if (w) {
+	//	w->loadCommands();
+	//}
 }
 
 void MainWindow::saveConfig(QString filename)
 {
+	qobject_cast<GGA2ZYZ*>(m_GGA2ZYZDock->widget())->saveSettings();
 	ui2Json();
 	m_pConfigFile->writeConfigFile(filename);
 	ControlWidget* w = qobject_cast<ControlWidget*>(m_ConsoleDock->widget());
@@ -198,18 +199,21 @@ void MainWindow::loadConfig(QString filename)
 		return;
 	}
 	json2ui();
+    qobject_cast<GGA2ZYZ*>(m_GGA2ZYZDock->widget())->loadSettings();
 }
 
 void MainWindow::ui2Json()
 {
 	qobject_cast<StreamCombine*>(m_StreamCombineDock->widget())->saveConfig(m_pConfigFile->m_ConfigJson);
 	qobject_cast<LogFilePath*>(m_LogFilePathDock->widget())->saveConfig(m_pConfigFile->m_ConfigJson);
+	qobject_cast<ControlWidget*>(m_ConsoleDock->widget())->saveConfig(m_pConfigFile->m_ConfigJson);
 }
 
 void MainWindow::json2ui()
 {
 	qobject_cast<StreamCombine*>(m_StreamCombineDock->widget())->loadConfig(m_pConfigFile->m_ConfigJson);
 	qobject_cast<LogFilePath*>(m_LogFilePathDock->widget())->loadConfig(m_pConfigFile->m_ConfigJson);
+	qobject_cast<ControlWidget*>(m_ConsoleDock->widget())->loadConfig(m_pConfigFile->m_ConfigJson);
 }
 
 void MainWindow::initWinPos()
